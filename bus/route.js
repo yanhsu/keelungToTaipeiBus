@@ -49,7 +49,7 @@ class Route {
   async getAllEstimateTimeByRouteId(routeId, direction) {
 		try {
 			return await axios({
-				url: `https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/Taichung?$filter=RouteID%20eq%20%27${routeId}%27%20and%20Direction%20eq%20%27${direction}%27&$orderby=StopSequence&$format=JSON`,
+				url: `https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/Streaming/InterCity?$filter=contains(RouteName%2FZh_tw%20%20%2C%20'${routeId}')%20and%20Direction%20eq%20'${direction}'&$orderby=StopSequence&$format=JSON`,
 				method: 'get',
 				headers: getAuthorizationHeader(),
 			});
