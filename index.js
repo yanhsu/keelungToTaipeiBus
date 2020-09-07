@@ -18,9 +18,9 @@ const { formatQuickReply, formatEstimatedTimeOfArrival,formatBusFlexMessage, for
 // }, 600001);
 
 let bot = linebot({
-    channelId: process.env.ChannelId || '1654604981',
-    channelSecret: process.env.ChannelSecret || 'a34a462b20e9b7e2b05e85a4f8b453c7',
-    channelAccessToken: process.env.ChannelAccessToken || 'MJ4yfA+R1G6mZ0/n24GTcLVdChmxbbmKbNql1lMtbFle5BFd4T+DBNZ60c3YvoaeeQoQzCKpU99MPskTjjxiTcZweHroGJ2Qr0fRkAZSfERtbwtarDUNueQfclGvtzMaqfDUK2dSjkmv8Yr++YwivgdB04t89/1O/w1cDnyilFU='
+    channelId: process.env.ChannelId,
+    channelSecret: process.env.ChannelSecret ,
+    channelAccessToken: process.env.ChannelAccessToken
 });
 
  
