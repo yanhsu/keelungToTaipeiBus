@@ -57,8 +57,8 @@ bot.on('message', async function(event) {
           let go = `去程往基隆方向`;
           let back = `回程往台北方向`;
           if(msg == '9023') {
-            let go = `去程往台北方向`;
-            let back = `回程往桃園方向`;
+            go = `去程往台北方向`;
+            back = `回程往桃園方向`;
           }
           await event.reply(formatQuickReply("請選擇去程回程",[go,back,"取消查詢"], [go,back,"取消查詢"],'postback', 'buttons'));
           start[senderID] = 1;
