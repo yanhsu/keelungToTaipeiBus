@@ -18,9 +18,9 @@ const { formatQuickReply, formatEstimatedTimeOfArrival,formatBusFlexMessage, for
 // }, 600001);
 
 let bot = linebot({
-    channelId: process.env.ChannelId,
-    channelSecret: process.env.ChannelSecret ,
-    channelAccessToken: process.env.ChannelAccessToken
+    channelId: channelId || process.env.channelId,
+    channelSecret :channelSecret || process.env.channelSecret,
+    channelAccessToken :channelAccessToken || process.env.channelAccessToken
 });
 
  
@@ -53,12 +53,17 @@ bot.on('message', async function(event) {
             await event.reply(replymsg);
           }
           start[senderID] = 0;
-        } else if(msg == '9006') {
+        } else if(msg == '9006' || msg == '1815' || msg == '9023') {
           let go = `去程往基隆方向`;
           let back = `回程往台北方向`;
+          if(msg == '9023') {
+            let go = `去程往台北方向`;
+            let back = `回程往桃園方向`;
+          }
           await event.reply(formatQuickReply("請選擇去程回程",[go,back,"取消查詢"], [go,back,"取消查詢"],'postback', 'buttons'));
           start[senderID] = 1;
-        }
+          searchRoute[senderID] = msg;
+        } 
       } else {
          await event.reply("輸入錯誤，請重新開始");
          start[senderID] = 0;
@@ -87,11 +92,11 @@ bot.on('message', async function(event) {
         searchDirection[senderID] = direction;
         console.log("direction = %s", direction);
         // let res = await bus.getStop(searchRoute[senderID], direction);
-        let res = await  bus.getAllEstimateTimeByRouteId(9006, direction);
+        let res = await  bus.getAllEstimateTimeByRouteId(searchRoute[senderID], direction);
         try {
           await new Promise(function (resolve, reject) {
             try {
-              let replymsg = formatBusFlexMessage('9006',res.data,"StopName.Zh_tw","StopSequence");
+              let replymsg = formatBusFlexMessage(searchRoute[senderID],res.data,"StopName.Zh_tw","StopSequence");
               // console.log(JSON.stringify(replymsg));
               event.reply(replymsg);
               resolve();
