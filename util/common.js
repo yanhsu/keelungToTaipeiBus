@@ -182,7 +182,7 @@ module.exports.formatBusFlexMessage = (routeName, stops) => {
     } = estimatedTimeOfArrival;
     let min;
     if (EstimateTime > 0) {
-      min = Math.round10(EstimateTime / 60, -1);
+      min = Math.round(EstimateTime / 60);
     }
     let nextTime = moment(NextBusTime).tz("Asia/Taipei").format("HH:mm");
     if (StopStatus == 2) {
@@ -192,7 +192,7 @@ module.exports.formatBusFlexMessage = (routeName, stops) => {
     } else if (StopStatus == 4) {
       return "今日未營運"
     } else if (PlateNumb == -1 || !PlateNumb) {
-      return `${nextTime}`
+      return `未發車`
     } else if(EstimateTime == 0){
       return `進站中`
     }else {
