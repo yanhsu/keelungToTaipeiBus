@@ -38,7 +38,7 @@ class Route {
   async getAllEstimateTimeByRouteId(routeId, direction) {
 	try {
 		return await axios({
-			url: `${baseUrl}/Bus/EstimatedTimeOfArrival/Streaming/InterCity?$filter=RouteName%2FZh_tw%20eq%20'${routeId}'%20and%20Direction%20eq%20'${direction}'&$orderby=StopSequence,EstimateTime&$format=JSON`,
+			url: `${baseUrl}/Bus/EstimatedTimeOfArrival/Streaming/InterCity?$filter=SubRouteName%2FZh_tw%20eq%20'${routeId}'%20and%20Direction%20eq%20'${direction}'&$orderby=StopSequence,EstimateTime&$format=JSON`,
 			method: 'get',
 			headers: await getAuthorizationHeader(),
 		});
@@ -50,7 +50,7 @@ class Route {
 	async getAllEstimateTimeByRouteIdWithoutDirection(routeId) {
 	try {
 			return await axios({
-				url: `${baseUrl}/Bus/EstimatedTimeOfArrival/Streaming/InterCity?$filter=contains(RouteName%2FZh_tw%20%20%2C%20'${routeId}')&$orderby=StopSequence&$format=JSON`,
+				url: `${baseUrl}/Bus/EstimatedTimeOfArrival/Streaming/InterCity?$filter=SubRouteName%2FZh_tw%20eq%20'${routeId}'&$orderby=StopSequence&$format=JSON`,
 				method: 'get',
 				headers: await getAuthorizationHeader(),
 			});

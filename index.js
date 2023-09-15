@@ -9,7 +9,7 @@ const https = require("https");
 // const NodeCache = require('node-cache');
 // const myCache = new NodeCache();
 // global.Service = new Service();
-// const { channelId, channelAccessToken, channelSecret} = config;
+const { channelId, channelAccessToken, channelSecret} = config;
 const { formatQuickReply, formatEstimatedTimeOfArrival,formatBusFlexMessage, formatFlexMessage } = require('./util/common');
 
 // setInterval(function() {
@@ -18,9 +18,9 @@ const { formatQuickReply, formatEstimatedTimeOfArrival,formatBusFlexMessage, for
 // }, 600001);
 
 let bot = linebot({
-  channelId: process.env.ChannelId,
-  channelSecret: process.env.ChannelSecret ,
-  channelAccessToken: process.env.ChannelAccessToken
+  channelId: process.env.ChannelId || channelId,
+  channelSecret: process.env.ChannelSecret || channelSecret,
+  channelAccessToken: process.env.ChannelAccessToken || channelAccessToken
 });
 
  
